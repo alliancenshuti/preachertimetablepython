@@ -36,7 +36,7 @@ for i in range(len(classes)):
         streams.append(classes[i]["streams"][k])
 
 
-def initialise():
+def Initialise():
     # create an empty data base if it does not exist
     wb = Workbook()
     dest_filename = 'preachersDb.xlsx'
@@ -45,7 +45,7 @@ def initialise():
     wb.save(filename=dest_filename)
 
 
-def make_timeTable():
+def Shuffle():
     # sort fo those with more inconvenient classes
     global record, preachers
     preachers = fetch_data()
@@ -98,5 +98,6 @@ def make_timeTable():
 
 if __name__ == "__main__":
     if not path.exists("preachersDb.xlsx"):
-        initialise()
-    output_timetable(make_timeTable(), streams)
+        Initialise()
+    output_timetable(Shuffle(), streams)
+    print("executed")

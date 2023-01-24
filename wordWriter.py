@@ -15,10 +15,10 @@ def output_timetable(records, streams):
     tableHeader[2].text = "wednesday"
     tableHeader[3].text = "thursday"
     # set all the classes
-    for i in range(1, len(records)):
+    for i in range(0, len(records)):
         cell = table.cell(i, 0)
         cell.text = streams[i]
-    for i in range(1, len(records)):
+    for i in range(0, len(records)):
         stream = table.rows[i].cells
         stream[1].text = records[i]["tuesday"]
         stream[2].text = records[i]["wednesday"]
