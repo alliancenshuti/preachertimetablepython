@@ -2,12 +2,17 @@ from docx import Document
 from docx.shared import Inches
 
 document = Document()
+section = document.sections[0]
+header = section.header
+docHeader = header.paragraphs[0]
+docHeader.text = "\tNu-vision High School\n\n\tWeekly Devotional preachers List \n\tFrom Tue .... TO Thur ..... ..... 2023"
+docHeader.style = document.styles["Header"]
 
-document.add_heading('preacher time table ', 0)
+document.add_heading(' ', 0)
 
 
-def output_timetable(records, streams):
-    table = document.add_table(rows=len(records), cols=4)
+def output_timetable(preachersAssigned, streams):
+    table = document.add_table(rows=len(preachersAssigned) + 1, cols=4)
     # table heading
     tableHeader = table.rows[0].cells
     tableHeader[0].text = "class"
@@ -15,14 +20,16 @@ def output_timetable(records, streams):
     tableHeader[2].text = "wednesday"
     tableHeader[3].text = "thursday"
     # set all the classes
-    for i in range(0, len(records)):
+    for i in range(1, len(preachersAssigned) + 1):
         cell = table.cell(i, 0)
+        i -= 1
         cell.text = streams[i]
-    for i in range(0, len(records)):
+    for i in range(1, len(preachersAssigned) + 1):
         stream = table.rows[i].cells
-        stream[1].text = records[i]["tuesday"]
-        stream[2].text = records[i]["wednesday"]
-        stream[3].text = records[i]["thursday"]
+        i -= 1
+        stream[1].text = preachersAssigned[i]["tuesday"]
+        stream[2].text = preachersAssigned[i]["wednesday"]
+        stream[3].text = preachersAssigned[i]["thursday"]
     table.style = document.styles['Table Grid']
     document.add_page_break()
 
