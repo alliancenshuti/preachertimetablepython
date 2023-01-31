@@ -45,6 +45,22 @@ def Initialise():
     wb.save(filename=dest_filename)
 
 
+# to verify that there is no error
+
+def timetableIsOk(daily , table , preachers):
+    # to mae sure no preacher preaches twice in a day
+    for i in range(len(days)):
+        dayPreachers = daily[days[i]]
+        refined = set(dayPreachers)
+        if len(refined) != len(dayPreachers):
+            return False
+        else:
+            return True
+
+    # test for making sure the preacher is not preaching an inconvenient class
+    
+
+
 def Shuffle():
     # sort fo those with more inconvenient classes
     global record, preachers
@@ -93,7 +109,10 @@ def Shuffle():
                 record[days[randomDay]] = preachers[randomPreacher]["name"]
             # add the record to the table list
             table.append(record)
-    return table
+    if timetableIsOk(daily):
+        return table
+    else:
+        return Shuffle()
 
 
 if __name__ == "__main__":
