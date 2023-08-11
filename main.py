@@ -47,8 +47,8 @@ def Initialise():
 
 # to verify that there is no error
 
-def timetableIsOk(daily , table , preachers):
-    # to mae sure no preacher preaches twice in a day
+def timetableIsOk(daily):
+    # to make sure no preacher preaches twice in a day
     for i in range(len(days)):
         dayPreachers = daily[days[i]]
         refined = set(dayPreachers)
@@ -58,7 +58,6 @@ def timetableIsOk(daily , table , preachers):
             return True
 
     # test for making sure the preacher is not preaching an inconvenient class
-    
 
 
 def Shuffle():
